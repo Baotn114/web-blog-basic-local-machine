@@ -45,16 +45,14 @@ const signupUser = async(req, res)=>{
 //User comment
 const comments = async(req, res) =>{
     const numberId = req.params['id'];
-    const {comment} = req.body;
-    // const numberId = req.params['id'];
-    // console.log(numberId);
+    const {userName, comment} = req.body;
     try{
         const post = await Blogs.findById(numberId);
-        //console.log(post.Comments)
-        post.Comments.push(comment);
+        post.user_data.push({userName: userName, Comments: comment});
+        //post.user_data.user_name.push(userName);
         await Blogs.findByIdAndUpdate(numberId, post, {new: true});
-        // res.status(200).json(updatedPost);
-        // res.status(200).send("You commented");
+        //console.log(test);
+
     }catch(error){
         res.status(400).json({error: error.message})
     }
@@ -65,8 +63,7 @@ const getComments = async(req, res) => {
     const numberId = req.params['id'];
     try{
         const post = await Blogs.findById(numberId);
-        console.log(post.Comments);
-        return res.status(200).json(post.Comments);
+        return res.status(200).json(post.user_data);
     }catch(error){
         res.status(400).json({error: error.message});
     }

@@ -6,10 +6,12 @@ const blogSchema = new Schema({
     title: String,
     author: String,
     content: String,
-    Comments: {
-        type: [String], 
-        default: []
-    }
+    user_data: [
+        {
+            userName : String,
+            Comments : String
+        }
+    ]
 }, {timestamps: true})
 
 
