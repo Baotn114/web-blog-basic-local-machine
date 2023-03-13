@@ -50,9 +50,9 @@ const comments = async(req, res) =>{
         const post = await Blogs.findById(numberId);
         post.user_data.push({userName: userName, Comments: comment});
         //post.user_data.user_name.push(userName);
-        await Blogs.findByIdAndUpdate(numberId, post, {new: true});
-        //console.log(test);
-
+        const response = await Blogs.findByIdAndUpdate(numberId, post, {new: true});
+        //console.log(response.user_data);
+        res.status(200).json(response.user_data);
     }catch(error){
         res.status(400).json({error: error.message})
     }
