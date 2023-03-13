@@ -24,7 +24,7 @@ const SignUp = () => {
 
     const handleSubmit = async (event) => {
         setError(null);
-
+        if (event && event.preventDefault) { event.preventDefault(); }
         event.preventDefault();
         const userSignup = {email, password};
         const response = await fetch("/api/user/signup",{

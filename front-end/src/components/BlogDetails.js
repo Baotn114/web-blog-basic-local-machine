@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { json, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { MDBTextArea } from 'mdb-react-ui-kit';
 import Button from 'react-bootstrap/Button';
 import { useCommentsContext } from "../hooks/useCommentsContext";
-import { useNavigate } from "react-router-dom";
 import { useAuthContext } from '../hooks/useAuthContext';
 import {
     MDBCard,
@@ -21,11 +20,7 @@ import {
 const BlogDetails = () => {
 
     const {id} = useParams();
-    const navigate = useNavigate();
     const {user} = useAuthContext();
-    const userEmail = {user};
-    const email = JSON.stringify(userEmail.email);
-    console.log(email);
     const [BlogDetails, setBlogDetails] = useState(null);
     
     const fetchBlog = async () => {
@@ -46,7 +41,7 @@ const BlogDetails = () => {
 
     // Post comments from users
     const handleComment = async (event) =>{
-
+        if (event && event.preventDefault) { event.preventDefault(); }
         event.preventDefault();
         const UserComment = {userName, comment};
         const response = await fetch("/api/user/comment/" + id, {  
@@ -54,25 +49,28 @@ const BlogDetails = () => {
             headers: {"Content-type" : "application/json"},
             body: JSON.stringify(UserComment)
         });
-        // const json = await response.json();
-        // console.log(json);
+        const data = await response.json();
+        if(response.ok){
+            //console.log(data)
+            const data_user = data.pop();
+            //console.log(data_user)
+            dispatch({type: 'CREATE_COMMENTS', payload: data_user})
+        }
+        
     }
     
     const getComments = async () => {
         const response = await fetch("/api/user/getComments/" + id); 
-        const json = await response.json();
+        const data = await response.json();
         if(response.ok){
-            const user = json.userName;
-            console.log(user)
-            dispatch({type:'CREATE_COMMENTS', payload: json})
-            //setuserComment(json);
+            //console.log(data);
+            dispatch({type:'SET_COMMENTS', payload: data})
         }
     }
 
 
     useEffect(()=>{
         fetchBlog();
-        handleComment();
         getComments();
     }, [])
 
@@ -88,7 +86,8 @@ const BlogDetails = () => {
                     <div style={{maxWidth: "100%"}} className='line'></div>       
                 </Col>
             </Row>
-            {comments && Object.keys(comments).map((data_comments, i)=>(
+            {/* {comments && Object.keys(comments).map((data_comments, i)=>( */}
+            {comments && comments.map((data) => (
                 <Row className="custom-comments">
                     <Col>
                         <MDBContainer style={{ maxWidth: "1000px", margin: "10px 0px" }}>
@@ -102,8 +101,8 @@ const BlogDetails = () => {
 
                                     <MDBCard className="mb-4">
                                         <MDBCardBody>
-                                        <p>{comments[data_comments].Comments}</p>
-
+                                        {/* <p>{comments[data_comments].Comments}</p> */}
+                                        <p>{data.Comments}</p>
                                         <div className="d-flex justify-content-between">
                                             <div className="d-flex flex-row align-items-center">
                                             <MDBCardImage
@@ -112,7 +111,8 @@ const BlogDetails = () => {
                                                 width="25"
                                                 height="25"
                                             />
-                                            <p className="small mb-0 ms-2">{comments[data_comments].userName}</p>
+                                            {/* <p className="small mb-0 ms-2">{comments[data_comments].userName}</p> */}
+                                            <p className="small mb-0 ms-2">{data.userName}</p>
                                             </div>
                                             <div className="d-flex flex-row align-items-center">
                                             <MDBIcon
@@ -144,7 +144,6 @@ const BlogDetails = () => {
                         value={comment} required onChange={(event) => setComment(event.target.value)}
                     />
                     <Button variant="primary" className='custom-btn' onClick={handleComment}>Submit</Button>{' '}
-                    <Button variant="primary" className='custom-btn' onClick={()=>navigate("/")}>Go back to Home Page</Button>{' '}
                 </Col>
             </Row>)}
         </Container>

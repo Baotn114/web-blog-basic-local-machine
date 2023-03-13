@@ -21,6 +21,7 @@ const SignIn = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (event) =>{
+      if (event && event.preventDefault) { event.preventDefault(); }
         event.preventDefault();
         const userSignin = {email, password};
         const response = await fetch("/api/user/signin", {
