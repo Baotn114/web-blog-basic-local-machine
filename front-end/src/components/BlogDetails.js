@@ -56,6 +56,8 @@ const BlogDetails = () => {
             //console.log(data_user)
             dispatch({type: 'CREATE_COMMENTS', payload: data_user})
         }
+        setComment('');
+        setUserName('');
         
     }
     
@@ -136,9 +138,9 @@ const BlogDetails = () => {
             
             {user && (
             <Row>
-                <Col>
+                <Col id="comment-form">
                 <div><strong><h3 style={{margin: "20px 0"}} >Commen section: </h3></strong></div>
-                    <MDBInput wrapperClass='' labelClass='text-dark' placeholder="Your Name" id='formControlLg' type='email' size="lg" style={{margin: "10px 0px"}}
+                    <MDBInput wrapperClass='' labelClass='text-dark' placeholder="Your Name" id='formControlLg' type='text' size="lg" style={{margin: "10px 0px"}}
                     value={userName} required onChange={(event) => setUserName(event.target.value)}/>
                     <MDBTextArea placeholder="Your Comment" type='text' style={{marginBottom: '10px'}} rows={4} 
                         value={comment} required onChange={(event) => setComment(event.target.value)}
