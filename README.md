@@ -11,8 +11,6 @@ When everything is ready, it should be like this:
 
 ![333977456_892463742080012_8528632293853654300_n](https://user-images.githubusercontent.com/90920248/222890147-bc1c7c13-87cb-457a-9479-965a906116ff.png)
 
-=> It has a bug with reloading page and I'm trying to fix it :( 
-
 When you are not signed in, you cannot comment or use the create-blog feature.
 
 ![image](https://user-images.githubusercontent.com/90920248/224933769-e974db50-16d6-4cb5-8f3e-29c0572d48a4.png)
@@ -20,6 +18,8 @@ When you are not signed in, you cannot comment or use the create-blog feature.
 When you are signed in, there are comment section in the blog and create-blog on the navbar.
 
 ![image](https://user-images.githubusercontent.com/90920248/224934478-018373d7-6adc-480e-9a30-f53cfbb3b6cd.png)
+
+=> It has a bug with reloading on this page and I'm trying to fix it :( 
 
 Comment Section: 
 
