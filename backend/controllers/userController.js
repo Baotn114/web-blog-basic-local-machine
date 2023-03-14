@@ -48,7 +48,7 @@ const comments = async(req, res) =>{
     const {userName, comment} = req.body;
     try{
         const post = await Blogs.findById(numberId);
-        post.user_data.push({userName: userName, Comments: comment});
+        post.user_data.unshift({userName: userName, Comments: comment}); //unshift them phan tu vao dau mang //push them phan tu vao cuoi mang
         //post.user_data.user_name.push(userName);
         const response = await Blogs.findByIdAndUpdate(numberId, post, {new: true});
         //console.log(response.user_data);
