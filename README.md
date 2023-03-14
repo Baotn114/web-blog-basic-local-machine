@@ -19,11 +19,11 @@ When you are signed in, there are comment section in the blog and create-blog on
 
 ![image](https://user-images.githubusercontent.com/90920248/224934478-018373d7-6adc-480e-9a30-f53cfbb3b6cd.png)
 
-=> It has a bug with reloading on this page and I'm trying to fix it :( 
-
 Comment Section: 
 
 ![image](https://user-images.githubusercontent.com/90920248/224934956-43ee80d4-34b7-467e-8696-76d183a35e70.png)
+
+=> It has a bug with reloading on this page and I'm trying to fix it :( 
 
 Create new blog:
 
