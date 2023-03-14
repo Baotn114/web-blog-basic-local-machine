@@ -52,7 +52,8 @@ const BlogDetails = () => {
         const data = await response.json();
         if(response.ok){
             //console.log(data)
-            const data_user = data.pop();
+            //const data_user = data.pop(); // get the last element
+            const data_user = data[0]; // get the first element
             //console.log(data_user)
             dispatch({type: 'CREATE_COMMENTS', payload: data_user})
         }

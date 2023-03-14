@@ -9,9 +9,9 @@ export const commentsReducer = (state, action) => {
                 comments: action.payload
             }
         case 'CREATE_COMMENTS':
-            //console.log(action.payload);
+            console.log(action.payload);
             return{
-                comments: [...state.comments, action.payload]
+                comments: [action.payload, ...state.comments]
             }
         default:
             return state
