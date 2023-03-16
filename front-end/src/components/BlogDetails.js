@@ -15,7 +15,9 @@ import {
     MDBContainer,
     MDBIcon,
     MDBRow,
-    MDBInput
+    MDBInput,
+    MDBCardTitle,
+    MDBCardText
   } from "mdb-react-ui-kit"; 
 const BlogDetails = () => {
 
@@ -83,11 +85,19 @@ const BlogDetails = () => {
         <Container className='custom-Home'>
             <Row>
                 <Col>
-                    <h3>{BlogDetails && BlogDetails.title}</h3>
-                    <h4>Author: {BlogDetails && BlogDetails.author} </h4>
-                    <p>{BlogDetails && BlogDetails.content}</p>
-                    <div style={{maxWidth: "100%"}} className='line'></div>       
+                    <MDBCard className='mb-3'>
+                        <MDBCardImage position='top' src='https://mdbootstrap.com/img/new/slides/041.webp' alt='...' />
+                        <MDBCardBody>
+                        <MDBCardTitle>{BlogDetails && BlogDetails.title}</MDBCardTitle>
+                        <MDBCardText>
+                            <small className='text-muted'>Author: {BlogDetails && BlogDetails.author}</small>
+                        </MDBCardText>
+                        <MDBCardText>{BlogDetails && BlogDetails.content}</MDBCardText>
+                        </MDBCardBody>
+                    </MDBCard>
+                    <div style={{maxWidth: "100%"}} className='line'></div>
                 </Col>
+                
             </Row>
             {/* {comments && Object.keys(comments).map((data_comments, i)=>( */}
             {comments && comments.map((data) => (
