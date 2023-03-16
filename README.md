@@ -23,8 +23,6 @@ Comment Section:
 
 ![image](https://user-images.githubusercontent.com/90920248/224934956-43ee80d4-34b7-467e-8696-76d183a35e70.png)
 
-=> It has a bug with reloading on this page and I'm trying to fix it :( 
-
 Create new blog:
 
 ![image](https://user-images.githubusercontent.com/90920248/224935170-e05d9d34-ace9-46d8-9f31-203fbd1245da.png)
