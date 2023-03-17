@@ -9,19 +9,19 @@ https://my-basic-blog.onrender.com
 
 When everything is ready, it should be like this: 
 
-![333977456_892463742080012_8528632293853654300_n](https://user-images.githubusercontent.com/90920248/222890147-bc1c7c13-87cb-457a-9479-965a906116ff.png)
+![image](https://user-images.githubusercontent.com/90920248/225581496-8580d731-4ba1-405c-aff9-3f4750ada6a1.png)
 
 When you are not signed in, you cannot comment or use the create-blog feature.
 
-![image](https://user-images.githubusercontent.com/90920248/224933769-e974db50-16d6-4cb5-8f3e-29c0572d48a4.png)
+![image](https://user-images.githubusercontent.com/90920248/225581710-fa64377e-6e6d-4502-820e-82a2d9052f5b.png)
 
 When you are signed in, there are comment section in the blog and create-blog on the navbar.
 
-![image](https://user-images.githubusercontent.com/90920248/224934478-018373d7-6adc-480e-9a30-f53cfbb3b6cd.png)
+![image](https://user-images.githubusercontent.com/90920248/225581874-0b9b59b8-caf7-4477-a31e-1d2eca050e2d.png)
 
 Comment Section: 
 
-![image](https://user-images.githubusercontent.com/90920248/224934956-43ee80d4-34b7-467e-8696-76d183a35e70.png)
+![image](https://user-images.githubusercontent.com/90920248/225582123-67a6532a-9878-41d8-acc9-1f464533bd78.png)
 
 Create new blog:
 
