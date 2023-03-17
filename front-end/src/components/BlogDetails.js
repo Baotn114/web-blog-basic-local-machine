@@ -28,7 +28,7 @@ const BlogDetails = () => {
     const fetchBlog = async () => {
         const response = await fetch("/api/routes/details/" + id);
         const json = await response.json();
-        //console.log(json);
+        console.log(json.image);
         if(response.ok){
             setBlogDetails(json);
         }
@@ -86,7 +86,7 @@ const BlogDetails = () => {
             <Row>
                 <Col>
                     <MDBCard className='mb-3'>
-                        <MDBCardImage position='top' src='https://mdbootstrap.com/img/new/slides/041.webp' alt='...' />
+                        <MDBCardImage position='top' src={BlogDetails && BlogDetails.image} alt='...' />
                         <MDBCardBody>
                         <MDBCardTitle>{BlogDetails && BlogDetails.title}</MDBCardTitle>
                         <MDBCardText>
