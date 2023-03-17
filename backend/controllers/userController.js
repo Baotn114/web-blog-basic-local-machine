@@ -3,8 +3,7 @@ require("dotenv").config()
 
 // Set up a userModel from your model
 const userModel = require("../models/userModel");
-const Blogs = require("../models/model");
-
+const Comment = require("../models/comment");
 // Set up a jwt
 const jwt = require("jsonwebtoken");
 
@@ -44,17 +43,16 @@ const signupUser = async(req, res)=>{
 
 //User comment
 const comments = async(req, res) =>{
-    const numberId = req.params['id'];
+    const blogId = req.params['id'];
+    //const blogId = numberId + "_" + `${new Date().getTime()}`;
+    //console.log(blogId)
     const {userName, comment} = req.body;
+    //console.log(comment);
     try{
-        const post = await Blogs.findById(numberId);
-        post.user_data.unshift({userName: userName, Comments: comment}); //unshift them phan tu vao dau mang //push them phan tu vao cuoi mang
-        //post.user_data.user_name.push(userName);
-        const response = await Blogs.findByIdAndUpdate(numberId, post, {new: true});
-        //console.log(response.user_data);
-        res.status(200).json(response.user_data);
+        const response = await Comment.create({blogId, userName, comment});
+        res.status(200).json(response);
     }catch(error){
-        res.status(400).json({error: error.message})
+       res.status(400).json({error: error.message});
     }
 }
 
@@ -62,8 +60,9 @@ const comments = async(req, res) =>{
 const getComments = async(req, res) => {
     const numberId = req.params['id'];
     try{
-        const post = await Blogs.findById(numberId);
-        return res.status(200).json(post.user_data);
+        const post = await Comment.find({blogId: numberId}).sort({createdAt: -1});
+        //console.log(post);
+        res.status(200).json(post);
     }catch(error){
         res.status(400).json({error: error.message});
     }

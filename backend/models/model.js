@@ -7,12 +7,6 @@ const blogSchema = new Schema({
     author: String,
     content: String,
     image: String,
-    user_data: [
-        {
-            userName : String,
-            Comments : String
-        }
-    ]
 }, {timestamps: true})
 
 
