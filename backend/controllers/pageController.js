@@ -16,10 +16,10 @@ const getDetails = async (req, res) => {
 
 // Create blogs
 const createBlogs = async (req, res) => {
-    const {title, author, content} = req.body;
+    const {title, author, content, image} = req.body;
 
     try{
-        const blogs = await Blogs.create({title, author, content});
+        const blogs = await Blogs.create({title, author, content, image});
         res.status(200).json(blogs);
     } catch(error){
         res.status(400).json({error: error.message})

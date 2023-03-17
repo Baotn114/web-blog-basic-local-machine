@@ -12,7 +12,8 @@ const userRoutes = require("./routes/user");
 
 const app = express();
 const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: "30mb", extended: true}));
+app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 
 
 // Set up mongodb mongoose
