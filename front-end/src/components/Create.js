@@ -29,7 +29,7 @@ const Create = () => {
                 headers: {"Content-type" : "application/json"}
         })
         const json = await response.json();
-        console.log(json)
+        //console.log(json)
         navigate('/')
     }
 

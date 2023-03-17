@@ -28,7 +28,7 @@ const BlogDetails = () => {
     const fetchBlog = async () => {
         const response = await fetch("/api/routes/details/" + id);
         const json = await response.json();
-        console.log(json.image);
+        //console.log(json.image);
         if(response.ok){
             setBlogDetails(json);
         }
@@ -44,7 +44,6 @@ const BlogDetails = () => {
     // Post comments from users
     const handleComment = async (event) =>{
         if (event && event.preventDefault) { event.preventDefault(); }
-        event.preventDefault();
         const UserComment = {userName, comment};
         const response = await fetch("/api/user/comment/" + id, {  
             method: "POST",
@@ -55,9 +54,9 @@ const BlogDetails = () => {
         if(response.ok){
             //console.log(data)
             //const data_user = data.pop(); // get the last element
-            const data_user = data[0]; // get the first element
+            //const data_user = data[0]; // get the first element
             //console.log(data_user)
-            dispatch({type: 'CREATE_COMMENTS', payload: data_user})
+            dispatch({type: 'CREATE_COMMENTS', payload: data})
         }
         setComment('');
         setUserName('');
@@ -115,7 +114,7 @@ const BlogDetails = () => {
                                     <MDBCard className="mb-4">
                                         <MDBCardBody>
                                         {/* <p>{comments[data_comments].Comments}</p> */}
-                                        <p>{data.Comments}</p>
+                                        <p>{data.comment}</p>
                                         <div className="d-flex justify-content-between">
                                             <div className="d-flex flex-row align-items-center">
                                             <MDBCardImage
@@ -154,8 +153,7 @@ const BlogDetails = () => {
                     <MDBInput wrapperClass='' labelClass='text-dark' placeholder="Your Name" id='formControlLg' type='text' size="lg" style={{margin: "10px 0px"}}
                     value={userName} required onChange={(event) => setUserName(event.target.value)}/>
                     <MDBTextArea placeholder="Your Comment" type='text' style={{marginBottom: '10px'}} rows={4} 
-                        value={comment} required onChange={(event) => setComment(event.target.value)}
-                    />
+                        value={comment} required onChange={(event) => setComment(event.target.value)}/>
                     <Button variant="primary" className='custom-btn' onClick={handleComment}>Submit</Button>{' '}
                 </Col>
             </Row>)}
