@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
-import BlogList from "./BlogList";
+import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import {
+    MDBCard,
+    MDBCardBody,
+    MDBCardTitle,
+    MDBCardText
+} from 'mdb-react-ui-kit';
+import { MDBSpinner } from 'mdb-react-ui-kit';
 const Home = () => {
     const [blogList, setBlogList] = useState(null);
 
@@ -16,8 +26,35 @@ const Home = () => {
     }, [])
     return ( 
         <div className="blog-list">
-            {blogList && blogList.map((data_blog)=>(
-                <BlogList key={data_blog._id} data_blog={data_blog}/>
+            {!blogList 
+            ?   <Container className='custom-Home'>
+                    <MDBSpinner grow className='mx-2' color='info'>
+                        <span className=''></span>
+                    </MDBSpinner>
+                    <MDBSpinner grow className='mx-2' color='info'>
+                        <span className=''></span>
+                    </MDBSpinner>  
+                    <MDBSpinner grow className='mx-2' color='info'>
+                        <span className=''></span>
+                    </MDBSpinner>    
+                </Container>
+            : blogList.map((data_blog)=>(
+                <Container className='custom-Home'>
+                    <Row>
+                        <Col>
+                            <Link to={`/blogs/${data_blog._id}`} style={{textDecoration: "none", color: "#00b8e6"}}>
+                                <MDBCard>
+                                    <MDBCardBody>
+                                        <MDBCardTitle>{data_blog.title}</MDBCardTitle>
+                                        <MDBCardText>Author: {data_blog.author}</MDBCardText>
+                                    </MDBCardBody>
+                                </MDBCard>   
+                            </Link>    
+                        </Col>
+                    </Row>
+                    
+                </Container>
+                
             ))}
         </div>
     );
