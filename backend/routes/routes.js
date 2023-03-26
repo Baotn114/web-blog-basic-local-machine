@@ -9,8 +9,11 @@ const{
 } = require("../controllers/pageController")
 
 router.get("/", getBlogs);
-router.post("/create", createBlogs);
 router.get("/details/:id", getDetails);
 
+const requireAuth = require("../middleware/requireAuth");
+router.use(requireAuth);
+
+router.post("/create", createBlogs);
 
 module.exports = router
