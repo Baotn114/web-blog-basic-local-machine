@@ -25,6 +25,7 @@ const BlogDetails = () => {
     const {user} = useAuthContext();
     const [BlogDetails, setBlogDetails] = useState(null);
     
+
     const fetchBlog = async () => {
         const response = await fetch("/api/routes/details/" + id);
         const json = await response.json();
@@ -44,10 +45,13 @@ const BlogDetails = () => {
     // Post comments from users
     const handleComment = async (event) =>{
         if (event && event.preventDefault) { event.preventDefault(); }
+        
         const UserComment = {userName, comment};
         const response = await fetch("/api/user/comment/" + id, {  
             method: "POST",
-            headers: {"Content-type" : "application/json"},
+            headers: {
+                "Content-type" : "application/json"
+            },
             body: JSON.stringify(UserComment)
         });
         const data = await response.json();

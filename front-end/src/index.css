@@ -14,7 +14,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.custom-Home{
+.custom-Home, .custom-reload{
   margin-top: 40px;
 }
 

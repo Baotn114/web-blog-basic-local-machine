@@ -4,12 +4,16 @@ import {useNavigate} from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import { MDBInput } from 'mdb-react-ui-kit';
 import { MDBTextArea } from 'mdb-react-ui-kit';
+import { useAuthContext } from "../hooks/useAuthContext"
+
 const Create = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [content, setContent] = useState('');
     const [image, setImage] = useState(null);
     const navigate = useNavigate();
+
+    const {user} = useAuthContext();
 
     const convertToBase64 = (e)=>{
         const file = e.target.files[0];
@@ -21,14 +25,21 @@ const Create = () => {
     }
 
     const handleSubmit = async () =>{
+        if(!user){
+            navigate('/sign-in')
+        }
+
         const blog = {title, author, content, image};
         console.log(title);
-        const response = await fetch("/api/routes/create", {
+        await fetch("/api/routes/create", {
                 method: "POST",
                 body: JSON.stringify(blog),
-                headers: {"Content-type" : "application/json"}
+                headers: {
+                    "Content-type" : "application/json",
+                    "Authorization" : `Bearer ${user.token}`
+                }
         })
-        const json = await response.json();
+        //const json = await response.json();
         //console.log(json)
         navigate('/')
     }

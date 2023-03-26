@@ -10,6 +10,7 @@ import {
     MDBCardText
 } from 'mdb-react-ui-kit';
 import { MDBSpinner } from 'mdb-react-ui-kit';
+
 const Home = () => {
     const [blogList, setBlogList] = useState(null);
 
@@ -27,15 +28,12 @@ const Home = () => {
     return ( 
         <div className="blog-list">
             {!blogList 
-            ?   <Container className='custom-Home'>
-                    <MDBSpinner grow className='mx-2' color='info'>
-                        <span className=''></span>
+            ?   <Container className='custom-reload'>
+                    <MDBSpinner grow className='mx-2' size="sm" color='info' >  
                     </MDBSpinner>
-                    <MDBSpinner grow className='mx-2' color='info'>
-                        <span className=''></span>
+                    <MDBSpinner grow className='mx-2' size="sm" color='info'>
                     </MDBSpinner>  
-                    <MDBSpinner grow className='mx-2' color='info'>
-                        <span className=''></span>
+                    <MDBSpinner grow className='mx-2' size="sm" color='info'>
                     </MDBSpinner>    
                 </Container>
             : blogList.map((data_blog)=>(
@@ -54,7 +52,6 @@ const Home = () => {
                     </Row>
                     
                 </Container>
-                
             ))}
         </div>
     );
