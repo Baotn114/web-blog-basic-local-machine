@@ -10,6 +10,8 @@ import {
     MDBCardText
 } from 'mdb-react-ui-kit';
 import { MDBSpinner } from 'mdb-react-ui-kit';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+
 
 const Home = () => {
     const [blogList, setBlogList] = useState(null);
@@ -44,7 +46,8 @@ const Home = () => {
                                 <MDBCard>
                                     <MDBCardBody>
                                         <MDBCardTitle>{data_blog.title}</MDBCardTitle>
-                                        <MDBCardText>Author: {data_blog.author}</MDBCardText>
+                                        <MDBCardText><strong>Author: {data_blog.author}</strong></MDBCardText>
+                                        <MDBCardText>{formatDistanceToNow(new Date(data_blog.createdAt), {addSuffix: true})}</MDBCardText>
                                     </MDBCardBody>
                                 </MDBCard>   
                             </Link>    
