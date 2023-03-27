@@ -17,7 +17,8 @@ import {
     MDBRow,
     MDBInput,
     MDBCardTitle,
-    MDBCardText
+    MDBCardText,
+    MDBSpinner
   } from "mdb-react-ui-kit"; 
 const BlogDetails = () => {
 
@@ -35,7 +36,7 @@ const BlogDetails = () => {
         }
     }
     
-    // use to input comment 
+    // use to input comment
     const [comment, setComment] = useState('');
     const [userName, setUserName] = useState('');
     const {comments, dispatch} = useCommentsContext();
@@ -80,7 +81,7 @@ const BlogDetails = () => {
     useEffect(()=>{
         fetchBlog();
         getComments();
-    }, [])
+    }, [dispatch])
 
 
 
@@ -88,8 +89,17 @@ const BlogDetails = () => {
         <Container className='custom-Home'>
             <Row>
                 <Col>
+                {!BlogDetails ? 
+                    <Container className='custom-reload'>
+                        <MDBSpinner grow className='mx-2' size="sm" color='info' >  
+                        </MDBSpinner>
+                        <MDBSpinner grow className='mx-2' size="sm" color='info'>
+                        </MDBSpinner>  
+                        <MDBSpinner grow className='mx-2' size="sm" color='info'>
+                        </MDBSpinner>    
+                    </Container> : 
                     <MDBCard className='mb-3'>
-                        <MDBCardImage position='top' src={BlogDetails && BlogDetails.image} alt='...' />
+                        <MDBCardImage position='top' src={BlogDetails.image} alt='...' />
                         <MDBCardBody>
                         <MDBCardTitle>{BlogDetails && BlogDetails.title}</MDBCardTitle>
                         <MDBCardText>
@@ -97,10 +107,9 @@ const BlogDetails = () => {
                         </MDBCardText>
                         <MDBCardText>{BlogDetails && BlogDetails.content}</MDBCardText>
                         </MDBCardBody>
-                    </MDBCard>
+                    </MDBCard>}
                     <div style={{maxWidth: "100%"}} className='line'></div>
                 </Col>
-                
             </Row>
             {/* {comments && Object.keys(comments).map((data_comments, i)=>( */}
             {comments && comments.map((data) => (
